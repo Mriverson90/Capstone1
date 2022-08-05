@@ -10,7 +10,8 @@ The main demographic for this website covers season long and dfs fantasy footbal
 I plan on pulling player statistics, photos and news from https://sportsdata.io/
 
 ## Schema
-![QuickDBD-Free Diagram (1)](https://user-images.githubusercontent.com/95009830/182983563-e38bd0e3-012b-453b-b961-1ec4bbecbe11.png)
+![QuickDBD-Free Diagram (2)](https://user-images.githubusercontent.com/95009830/182985449-970c7040-182d-4823-aaff-fed5b4176053.png)
+
 
 ## Potential Issues
 Certain api calls require paid subscription to access, including player images, may need to source player images from elsewhere. 
