@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FF Website</title>
+    <link rel="stylesheet" href="/stylesheet/app.css" />
+    <script
+      src="https://kit.fontawesome.com/c66b5e967f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li class="logo">
+          <a href="/">Fantasy Football Website</a>
+        </li>
+        <div class="items">
+          {% if not g.user %}
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Login</a></li>
+          {% else %}
+          <li><a href="/users/{{ g.user.id }}"> {{ g.user.username }} </a></li>
+          <li><a href="/roster">My Roster</a></li>
+          <li><a href="/logout">Log out</a></li>
+          {% endif %}
+        </div>
+        <li class="search-icon">
+          <input type="search" placeholder="Enter Player Name" />
+          <label class="icon">
+            <span class="fas fa-search"></span>
+          </label>
+        </li>
+      </ul>
+    </nav>
+
+    {% block content %} {% endblock %}
+
+    <script src="js/functions.js"></script>
+  </body>
+</html>
