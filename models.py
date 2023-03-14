@@ -1,7 +1,5 @@
 """SQLAlchemy Models for Capstone1"""
 
-from datetime import datetime
-
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
@@ -14,7 +12,7 @@ db = SQLAlchemy()
 class User(db.Model):
     """User in the system."""
 
-    __tablename__ = 'Users'
+    __tablename__ = 'users'
 
     id = db.Column(
         db.Integer,
@@ -38,8 +36,7 @@ class User(db.Model):
         nullable=False,
     )
 
-    players = db.relationship('Players')
-    roster = db.relationship('Rosters')
+    roster = db.relationship('rosters')
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
@@ -86,7 +83,7 @@ class User(db.Model):
 class Players(db.Model):
     """Player model to pull info from api and save to database"""
 
-    __tablename__ = 'Players'
+    __tablename__ = 'players'
 
     id = db.Column(
         db.Integer,
@@ -204,7 +201,7 @@ class Players(db.Model):
 class Rosters(db.Model):
     """User created Roster"""
 
-    __tablename__ = 'Rosters'
+    __tablename__ = 'rosters'
 
     id = db.Column(
         db.Integer,
@@ -213,13 +210,13 @@ class Rosters(db.Model):
 
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey('Users.id', ondelete='cascade'),
+        db.ForeignKey('users.id', ondelete='cascade'),
         nullable=False
     )
 
     player = db.Column(
         db.Integer,
-        db.ForeignKey('Players.id')
+        db.ForeignKey('players.id')
     )
 
 
