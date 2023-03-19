@@ -23,7 +23,6 @@ toolbar = DebugToolbarExtension(app)
 connect_db(app)
 
 
-
 @app.before_request
 def add_user_to_g():
     """If we're logged in, add curr user to Flask global."""
@@ -115,11 +114,12 @@ def logout():
 
 ########### Homepage and Error page ###########
 
+
 @app.route('/')
 def homepage():
     """Show homepage with most recent news stories"""
 
-    return render_template('home.html')
+    return render_template('/templates/home.html')
 
 
 @app.errorhandler(404)
