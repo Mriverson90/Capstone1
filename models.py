@@ -3,8 +3,10 @@
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
+
 bcrypt = Bcrypt()
 db = SQLAlchemy()
+
 
 """User model"""
 
@@ -17,6 +19,7 @@ class User(db.Model):
     id = db.Column(
         db.Integer,
         primary_key=True,
+        autoincrement=True,
     )
 
     email = db.Column(
@@ -36,7 +39,7 @@ class User(db.Model):
         nullable=False,
     )
 
-    roster = db.relationship('rosters')
+    roster = db.relationship('Roster', backref='user')
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
@@ -80,7 +83,7 @@ class User(db.Model):
         return False
 
 
-class Players(db.Model):
+class Player(db.Model):
     """Player model to pull info from api and save to database"""
 
     __tablename__ = 'players'
@@ -88,11 +91,12 @@ class Players(db.Model):
     id = db.Column(
         db.Integer,
         primary_key=True,
+        autoincrement=True
     )
 
     playerID = db.Column(
         db.Integer,
-        nullable=False
+        nullable=False,
     )
 
     name = db.Column(
@@ -100,105 +104,94 @@ class Players(db.Model):
         nullable=False,
     )
 
-    age = db.Column(
-        db.Integer,
-        nullable=False
-    )
-
     position = db.Column(
         db.String(5),
         nullable=False
-    )
-
-    number = db.Column(
-        db.Integer,
-        nullable=False
-    )
-
-    adp = db.Column(
-        db.Integer,
-        nullable=False
-    )
-
-    birthday = db.Column(
-        db.String(50),
-        nullable=False
-    )
-
-    byeweek = db.Column(
-        db.Integer,
-        nullable=False
-    )
-
-    draftyear = db.Column(
-        db.Integer,
-    )
-
-    draftpick = db.Column(
-        db.Integer,
-    )
-
-    depthOrder = db.Column(
-        db.Integer,
     )
 
     team = db.Column(
         db.String(120)
     )
 
-    inactive = db.Column(
-        db.Boolean,
-        nullable=False
+    byeweek = db.Column(
+        db.Integer,
+    )
+
+    projFantasyPoints = db.Column(
+        db.Integer,
+    )
+
+    projFantasyPointsPPR = db.Column(
+        db.Integer,
+    )
+
+    adp = db.Column(
+        db.Integer,
+    )
+
+    adpRookie = db.Column(
+        db.Integer,
+    )
+
+    adpPPR = db.Column(
+        db.Integer,
+    )
+
+    adpDynasty = db.Column(
+        db.Integer,
+    )
+
+    adp2QB = db.Column(
+        db.Integer,
+    )
+
+    age = db.Column(
+        db.Integer,
+    )
+
+    number = db.Column(
+        db.Integer
+    )
+
+    birthday = db.Column(
+        db.String(50),
     )
 
     experience = db.Column(
         db.String(120),
-        nullable=False
     )
 
     height = db.Column(
         db.String(120),
-        nullable=False
     )
 
     weight = db.Column(
         db.Integer,
-        nullable=False
-    )
-
-    news = db.Column(
-        db.Text
     )
 
     photo = db.Column(
         db.Text
     )
 
-    yahoo = db.Column(
-        db.Integer,
-        nullable=False
-    )
-
     teamID = db.Column(
         db.Integer
+    )
+
+    yahoo = db.Column(
+        db.Integer,
     )
 
     opponent = db.Column(
         db.Text
     )
 
-    active = db.Column(
-        db.Boolean,
-        nullable=False
-    )
-
     status = db.Column(
-        db.String(12),
-        nullable=False
+        db.String(120),
     )
+    
+    rosters = db.relationship('Roster', secondary='roster_player', backref='players')
 
-
-class Rosters(db.Model):
+class Roster(db.Model):
     """User created Roster"""
 
     __tablename__ = 'rosters'
@@ -214,9 +207,58 @@ class Rosters(db.Model):
         nullable=False
     )
 
-    player = db.Column(
+    players = db.relationship('Player'),
+
+    def __repr__(self):
+        return f"<Roster #{self.id} for User #{self.user_id}>"
+
+
+class News(db.Model):
+    """News Stories"""
+    __tablename__ = 'news'
+
+    id = db.Column(
         db.Integer,
-        db.ForeignKey('players.id')
+        primary_key=True,
+    )
+
+    source = db.Column(
+        db.String,
+    )
+
+    newsID = db.Column(
+        db.Integer,
+    )
+
+    time_ago = db.Column(
+        db.String,
+    )
+
+    url = db.Column(
+        db.String,
+    )
+
+    title = db.Column(
+        db.String,
+    )
+
+    content = db.Column(
+        db.Text,
+    )
+
+    team = db.Column(
+        db.String,
+    )
+
+    categories = db.Column(
+        db.String,
+    )
+    teamID = db.Column(
+        db.Integer,
+    )
+
+    original_source = db.Column(
+        db.String,
     )
 
 

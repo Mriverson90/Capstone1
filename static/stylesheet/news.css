@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+#news-header{
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 10px;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+
+  #news{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  
+  .card-btn {
+    color: #ffffff;
+    padding: 0.8rem;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+  }
+  
+  .btn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .cards-item {
+    width: 400px;
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+  }
+  
+  @media (min-width: 40rem) {
+    .cards_item {
+      width: 50%;
+    }
+  }
+  
+  @media (min-width: 56rem) {
+    .cards_item {
+      width: 33.3333%;
+    }
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .card-content {
+    padding: 1rem;
+    background: linear-gradient(to bottom left, #00b5bf 40%, #00656a 100%);
+  }
+  
+  .card-time {
+    color: #ffffff;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    margin: 0px;
+  }
+  
+  .card-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;    
+    font-weight: 400;
+  }

@@ -1,5 +1,37 @@
 {% extends 'index.html' %} {% block content %}
 
-<div></div>
+<div id="playerDiv">
+  <h1>{{ player.name }}</h1>
+  <img src="{{player.photo}}" alt="Player Image" />
+  <table id="playerTable">
+    <thead>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Postion</th>
+      <th>Team</th>
+      <th>ADP</th>
+      <th>Bye Week</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{player.name}}</td>
+        <td>{{player.age}}</td>
+        <td>{{player.position}}</td>
+        <td>{{player.team}}</td>
+        <td>{{player.adp}}</td>
+        <td>{{player.byeweek}}</td>
+        <td>{{player.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <form
+    method="POST"
+    action="{{ url_for('add_player_to_roster', user_id=user.id, player_id=player.id) }}"
+  >
+    <input type="hidden" name="player_id" value="{{ player.id }}" />
+    <button type="submit">Add to Roster</button>
+  </form>
+</div>
 
 {% endblock %}

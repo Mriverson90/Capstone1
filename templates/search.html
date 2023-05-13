@@ -1,0 +1,15 @@
+{% extends 'index.html' %} {% block content %}
+<form method="post">
+  <label for="player_name">Enter player name:</label>
+  <input type="text" name="player_name" id="player_name" />
+  <button type="submit">Search</button>
+</form>
+<div id="player-list">
+  {% if player %}
+  <h1 href="/{{<int:player.id>}}">{{ player.name }}</h1>
+  <p>Position: {{ player.position }}</p>
+  {% else %}
+  <p>No player found.</p>
+  {% endif %}
+</div>
+{% endblock %}

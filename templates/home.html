@@ -1,11 +1,23 @@
-{% extends 'index.html' %} {% block content %}
+{% extends 'index.html' %} {% block head %}
+<link rel="stylesheet" href="/static/stylesheet/news.css" />
+{% endblock %} {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="/static/js/news.js"></script>
+<div id="news">
+  <h1 id="news-header">Rotoballer News</h1>
+  <ul class="wrapper">
+    {% for article in news %}
+    <li class="cards-item">
+      <div class="card">
+        <div class="card-content">
+          <h3 class="card-time">{{article.time_ago}}</h3>
+          <h1 class="card-title">{{article.title}}</h1>
 
-<section>
-  <h1>Rotoballer News</h1>
-  <ul id="rotoNews"></ul>
-</section>
-<section>
-  <h1>ESPN News</h1>
-  <ul id="espnNews"></ul>
-</section>
+          <a class="card-btn" href="{{article.url}}">Read More</a>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

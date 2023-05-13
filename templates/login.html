@@ -1,8 +1,15 @@
-{% extends 'index.html' %} {% block content %}
+{% extends 'index.html' %} {% block head %}
+<link
+  href="http://fonts.googleapis.com/css?family=Montserrat:400,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link rel="stylesheet" href="/static/stylesheet/login.css" />
+{% endblock %} {% block content %}
 
-<div class="row justify-content-md-center">
-  <div class="col-md-7 col-lg-5">
-    <h2 class="join-message">Welcome back!</h2>
+<section id="login-section">
+  <div class="login-block">
+    <h1>Login</h1>
 
     <form method="POST" id="user_form">
       {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
@@ -11,9 +18,8 @@
       {% endfor %} {{ field(placeholder=field.label.text, class="form-control")
       }} {% endfor %}
 
-      <button class="btn btn-primary btn-block btn-lg">Log in</button>
+      <button id="loginBtn">Log in</button>
     </form>
   </div>
-</div>
-
+</section>
 {% endblock %}

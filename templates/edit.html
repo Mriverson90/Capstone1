@@ -1,8 +1,14 @@
-{% extends 'index.html' %} {% block content %}
-
-<div class="row justify-content-md-center">
-  <div class="col-md-4">
-    <h2 class="join-message">Edit Your Profile</h2>
+{% extends 'index.html' %} {% block head %}
+<link
+  href="http://fonts.googleapis.com/css?family=Montserrat:400,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link rel="stylesheet" href="/static/stylesheet/login.css" />
+{% endblock %}{% block content %}
+<section id="login-section">
+  <div class="login-block">
+    <h2>Edit Your Profile</h2>
     <form method="POST" id="user_form">
       {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
       'hidden' and field.name != 'password' %} {% for error in field.errors %}
@@ -13,17 +19,12 @@
       <p>To confirm changes, enter your password:</p>
       {% if form.password.errors %} {% for error in form.password.errors %}
       <span class="text-danger"> {{ error }} </span>
-      {% endfor %} {% endif %} {{ form.password(placeholder="Enter your password
-      to confirm", class="form-control") }}
+      {% endfor %} {% endif %} {{ form.password(placeholder="password",
+      class="form-control") }}
 
-      <div class="edit-btn-area">
-        <button class="btn btn-success">Edit this user!</button>
-        <a href="/users/{{ user_id }}" class="btn btn-outline-secondary"
-          >Cancel</a
-        >
-      </div>
+      <button>Edit this user!</button>
+      <a href="/users/{{ user_id }}">Cancel</a>
     </form>
   </div>
-</div>
-
+</section>
 {% endblock %}

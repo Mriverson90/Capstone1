@@ -1,0 +1,12 @@
+{% extends 'user.html' %} {% block content %}
+<h1>{{ user.username }}'s Roster</h1>
+<ul>
+  {% for player in roster.players %}
+  <li>
+    <a href="{{ url_for('show_player', id=player.id) }}">
+      Name: {{ player.name }}, Position: {{ player.position }}</a
+    >
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

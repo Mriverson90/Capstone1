@@ -1,8 +1,15 @@
-{% extends 'index.html' %}{% block content %}
+{% extends 'index.html' %} {% block head %}
+<link
+  href="http://fonts.googleapis.com/css?family=Montserrat:400,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link rel="stylesheet" href="/static/stylesheet/login.css" />
+{% endblock %} {% block content %}
 
-<div class="row justify-content-md-center">
-  <div class="col-md-7 col-lg-5">
-    <h2 class="join-message">Create your own profile!</h2>
+<section id="login-section">
+  <div class="login-block">
+    <h1>Create your own profile!</h1>
     <form method="POST" id="user_form">
       {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
       'hidden' %} {% for error in field.errors %}
@@ -10,9 +17,8 @@
       {% endfor %} {{ field(placeholder=field.label.text, class="form-control")
       }} {% endfor %}
 
-      <button class="btn btn-primary btn-lg btn-block">Sign me up!</button>
+      <button id="signUpBtn">Sign me up!</button>
     </form>
   </div>
-</div>
-
+</section>
 {% endblock %}
